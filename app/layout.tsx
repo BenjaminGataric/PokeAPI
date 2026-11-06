@@ -14,11 +14,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <Navbar />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
-        </body>
+      </body>
     </html>
   );
 }
