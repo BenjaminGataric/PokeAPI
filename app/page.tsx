@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { getTypeColor } from "@/data/type-colors";
 
@@ -60,30 +61,32 @@ export default async function Home() {
 
       <div className="grid grid-cols-5 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {pokemonWithTypes.map((pokemon, index) => (
-          <article
-            key={pokemon.name}
-            className="bg-white rounded-2xl shadow-md p-4 justify-center"
-          >
-            <Image
-              src={imageUrl(index)}
-              alt={pokemon.name}
-              width={100}
-              height={100}
-              className="object-contain"
-            />
-            <p className="capitalize">{pokemon.name}</p>
-            <p>#{index + 1}</p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {pokemon.types.map((type) => (
-                <span
-                  key={type}
-                  className={`rounded-full px-2 py-1 text-xs capitalize ${getTypeColor(type)}`}
-                >
-                  {type}
-                </span>
-              ))}
-            </div>
-          </article>
+          <Link href={"/pokemon/" + pokemon.name} key={pokemon.name}>
+            <article
+              key={pokemon.name}
+              className="bg-white rounded-2xl shadow-md p-4 justify-center"
+            >
+              <Image
+                src={imageUrl(index)}
+                alt={pokemon.name}
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+              <p className="capitalize">{pokemon.name}</p>
+              <p>#{index + 1}</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {pokemon.types.map((type) => (
+                  <span
+                    key={type}
+                    className={`rounded-full px-2 py-1 text-xs capitalize ${getTypeColor(type)}`}
+                  >
+                    {type}
+                  </span>
+                ))}
+              </div>
+            </article>
+          </Link>
         ))}
       </div>
     </main>

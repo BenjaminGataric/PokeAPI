@@ -14,13 +14,13 @@ export function getTypeColor(type: string): string {
     if (type === "electric") return "bg-yellow-300 text-slate-900";
     if (type === "steel") return "bg-[#adb5bd] text-slate-900";
     if (type === "dragon") return "bg-indigo-500 text-slate-900";
-    if (type === "fairy") return "bg-pink-500 text-slate-900";
+    if (type === "fairy") return "bg-pink-300 text-slate-900";
     if (type === "ice") return "bg-cyan-500 text-slate-900";
     if (type === "dark") return "bg-[#252422] text-white";
     
     
 
 
-    return "bg-slate-100 text-slate-900";
+    return "bg-slate-200 text-slate-900";
 
 }
