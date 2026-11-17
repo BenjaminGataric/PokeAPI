@@ -13,10 +13,18 @@ const DetailPage = async ({ params }: PageProps) => {
   }
 
   const pokemon = await response.json();
-  const sprite = pokemon.sprites.front_default;
-
+  const sprite =
+    pokemon.sprites.other?.["official-artwork"].front_default ??
+    pokemon.sprites.versions?.["generation-iv"]?.["heartgold-soulsilver"]
+      ?.front_default ??
+    pokemon.sprites.front_default;
   return sprite ? (
-    <Image src={sprite} alt={`${pokemon.name} sprite`} width={100} height={100} />
+    <Image
+      src={sprite}
+      alt={`${pokemon.name} sprite`}
+      width={400}
+      height={400}
+    />
   ) : (
     <p>No sprite available for {name}.</p>
   );

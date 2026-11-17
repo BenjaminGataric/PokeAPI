@@ -23,12 +23,11 @@ interface ListResponse {
 }
 
 const SPRITES =
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/";
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
 const imageUrl = (index: number) => SPRITES + (index + 1) + ".png";
 
 export default async function Home() {
-  "use cache";
   const response = await fetch(API);
   if (!response) {
     throw new Error(`Failed to fetch Pokémon list`);
@@ -37,7 +36,9 @@ export default async function Home() {
   const data: ListResponse = await response.json();
   const pokemonWithTypes = await Promise.all(
     data.results.map(async (pokemon) => {
-      const detailsResponse = await fetch(pokemon.url, { cache: "force-cache" });
+      const detailsResponse = await fetch(pokemon.url, {
+        cache: "force-cache",
+      });
       if (!detailsResponse.ok) {
         throw new Error(
           `Failed to fetch details for ${pokemon.name}: ${detailsResponse.status}`,
