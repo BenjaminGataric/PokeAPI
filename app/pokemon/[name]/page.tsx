@@ -1,25 +1,25 @@
 import Image from "next/image";
 
 interface PageProps {
-    params: Promise<{ id: number }>;
+  params: Promise<{ name: string }>;
 }
+
 const DetailPage = async ({ params }: PageProps) => {
-    "use cache";
-    const { id } = await params;
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    if(!response.ok) {
-        throw new Error(`You arent allowed to see ${id}`);
-    }
-    const pokemon = await response.json();
-    const sprites = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/${id}.png`;
-    return (
-        <div>
-            {sprites && (
-  <Image src={sprites} alt={`${id} sprite`} width={100} height={100} />
-)}
-        </div>
-    )
-    
+  const { name } = await params;
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to load ${name}: ${response.status}`);
+  }
+
+  const pokemon = await response.json();
+  const sprite = pokemon.sprites.front_default;
+
+  return sprite ? (
+    <Image src={sprite} alt={`${pokemon.name} sprite`} width={100} height={100} />
+  ) : (
+    <p>No sprite available for {name}.</p>
+  );
 };
 
 export default DetailPage;
