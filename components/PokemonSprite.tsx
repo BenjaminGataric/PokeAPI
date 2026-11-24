@@ -37,7 +37,7 @@ export default function PokemonSprite({
   ];
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-4 items-center">
+    <div className="bg-white rounded-2xl shadow-md p-4 py-5 items-center">
       {sprite && (
         <Image src={sprite} alt={`${name} sprite`} width={200} height={200} />
       )}
@@ -46,7 +46,7 @@ export default function PokemonSprite({
           <button
             key={button.label}
             type="button"
-            className="text-slate-900 bg-slate-300 rounded-full px-3 py-1 mx-1 my-1 hover:bg-blue-400"
+            className="text-slate-900 bg-slate-300 rounded-full px-3 py-3 mx-1 my-1 hover:bg-blue-400"
             onClick={() => button.sprite && setSprite(button.sprite)}
             disabled={!button.sprite}
             title={

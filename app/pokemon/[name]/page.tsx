@@ -1,4 +1,5 @@
 import PokemonSprite from "@/components/PokemonSprite";
+import { getTypeColor } from "@/data/type-colors";
 
 interface PageProps {
   params: Promise<{ name: string }>;
@@ -37,7 +38,10 @@ const DetailPage = async ({ params }: PageProps) => {
   return (
     <main className="max-w-5xl mx-auto p-6">
       <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1">
-        <h1 className="text-5xl font-bold capitalize">{pokemon.name}</h1>
+        <h1 className="py-6 text-5xl font-bold capitalize">{pokemon.name}</h1>
+        <span className={`capitalize ${getTypeColor(pokemon.name)}`}>
+          {pokemon.type}
+        </span>
         <PokemonSprite
           name={pokemon.name}
           officialArtwork={officialArtwork}

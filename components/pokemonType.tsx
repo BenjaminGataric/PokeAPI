@@ -1,10 +1,10 @@
 "use client";
-
+// import { useState } from "react";
+import { getTypeColor } from "@/data/type-colors";
 interface PokemonTypeProps {
   type1: string;
-  type2: string;
 }
 
-export default function PokemonType({ type1, type2 }: PokemonTypeProps) {
-  return <span className="capitalize"></span>;
+export default function PokemonType({ type1 }: PokemonTypeProps) {
+  return <span className={`capitalize ${getTypeColor(type1)}`}>{type1}</span>;
 }
